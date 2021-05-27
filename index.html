@@ -23,7 +23,7 @@
                     <div class="mb-2">
                         <span class="font-weight-bold bg-white">{{currency(cartTotal)}}</span>
                         <button class="btn btn-success btn-sm ml-3" id="cartDropdown" aria-haspopup="true"
-                            aria-expanded="false" @click="displayCart= !displayCart">
+                            aria-expanded="false" :style="warningObject" @click="displayCart= !displayCart">
                             <i class="fas fa-shopping-cart mr-1"></i>
                             {{cart.length}}
                         </button>
@@ -59,7 +59,9 @@
                 <h3 class="text-info">{{k + 1}}.</h3>
                 <div id="display-list" class="row d-flex mb-3 align-items-center">
                     <div class="col-1 m-auto">
-                        <button class="btn btn-success" @click="addToCart(el, $event)">+</button>
+                        <button class="btn btn-success" :style="borderStyle" @click="addToCart(el, $event)">
+                            +
+                        </button>
                     </div>
                     <div class="col-sm-4">
                         <img class="img-fluid d-block" v-bind:src="el.image" :alt="el.image_title">

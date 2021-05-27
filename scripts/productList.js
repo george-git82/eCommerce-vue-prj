@@ -1,7 +1,15 @@
 const productApp = {
     data() {
         return {
-            max: 130,
+            warningObject: {
+                backgroundColor: "auto",
+                border: "transparent",
+            },
+            borderStyle: {
+                borderRadius: "50%",
+                border: "3px solid darkgreen",
+            },
+            max: 50,
             displayLabels: true,
             productsList: [],
             cart: [],
@@ -30,6 +38,9 @@ const productApp = {
         },
         addToCart(item, e) {
             this.cart.push(item);
+            if (this.cartTotal >= 100) {
+                this.warningObject.backgroundColor = "red";
+            }
         },
     },
 };
