@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>eCommerce | single file | vue project</title>
+
+    <link rel='stylesheet' href='https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha2/css/bootstrap.min.css'>
+    <link rel='stylesheet' href='https://use.fontawesome.com/releases/v5.7.0/css/all.css'>
+    <script src="https://unpkg.com/vue@next"></script>
+</head>
+
+<body class="container mt-5">
+    <nav class="navbar navbar-light" style="background-color: #e3f2fd;">
+        <i class="fas fa-shopping-bag fa-lg"></i> Enjoy Shopping !!!
+    </nav>
+    <div id="products">
+        <nav class="navbar navbar-light sticky-top mr-3">
+            <div class=" w-100 navbar-text ml-auto d-flex justify-content-end position-relative">
+                <div class="mr-auto d-flex align-items-end flex-column bd-highlight mb-3 position-absolute">
+                    <div class="mb-2">
+                        <span class="font-weight-bold bg-white">{{currency(cartTotal)}}</span>
+                        <button class="btn btn-success btn-sm ml-3" id="cartDropdown" aria-haspopup="true"
+                            aria-expanded="false" @click="displayCart= !displayCart">
+                            <i class="fas fa-shopping-cart mr-1"></i>
+                            {{cart.length}}
+                        </button>
+                    </div>
+                    <div class="list-group" aria-labelledby="cartDropdown" v-if="displayCart">
+                        <div v-for="(item, index) in cart" :key="index"
+                            class="list-group-item d-flex justify-content-between">
+                            <div>{{item.name}}</div>
+                            <div class="ml-3 font-weight-bold">{{currency(item.price)}}</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </nav>
+
+        <section class="container">
+            <label for="max-price" class="form-label h4">Max Price (${{max}})</label>
+            <div class="badge bg-success ml-3">{{filteredProducts.length}} results found</div>
+            <!-- <input type="text" class="form-control" id="max-price" v-model.number="max"> -->
+            <input type="range" class="form-range" name="max-price-range" id="max-price-range" v-model.number="max"
+                min="0" max="130">
+
+            <div class="form-check">
+                <input type="checkbox" class="form-check-input" name="showLabels" id="showLabels"
+                    v-model="displayLabels">
+                <label for="showLabels" class="form-check-label">
+                    <span class="badge bg-dark">Show labels</span>
+                </label>
+            </div>
+
+            <div v-for="(el, k, i) in filteredProducts" :key="el.id">
+                <hr v-if="k!=0">
+                <h3 class="text-info">{{k + 1}}.</h3>
+                <div id="display-list" class="row d-flex mb-3 align-items-center">
+                    <div class="col-1 m-auto">
+                        <button class="btn btn-success" @click="addToCart(el, $event)">+</button>
+                    </div>
+                    <div class="col-sm-4">
+                        <img class="img-fluid d-block" v-bind:src="el.image" :alt="el.image_title">
+                    </div>
+                    <div class="col">
+                        <h3 class="text-info">{{el.id}} | {{el.name}}</h3>
+                        <p class="mb-0">{{el.description}}</p>
+                        <div class="h5 float-right">
+                            <span class="badge bg-success" v-if="el.price>=90 && displayLabels">premier</span>
+                            <span class="badge bg-primary"
+                                v-else-if="el.price<90 && el.price>10 && displayLabels">value</span>
+                            <span class="badge bg-danger" v-else-if="el.price<=10 && displayLabels">sale</span>
+                            {{currency(el.price)}}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <hr>
+    <div id="footerSection">
+        <footer class="page-footer font-small blue pt-4">
+            <div class="footer-copyright text-center py-3">
+                © 2021 : {{creator.name}} |
+                <a :href="creator.link" :alt="creator.linkAlt"> <i class="fab fa-github"></i></a>
+            </div>
+        </footer>
+    </div>
+    <script src="./scripts/footer.js"></script>
+    <script src="./scripts/productList.js"></script>
+</body>
+
+</html>
