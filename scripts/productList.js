@@ -1,6 +1,9 @@
 const productApp = {
     data() {
         return {
+            show: true,
+            btnColor: "btn-success",
+            totalColor: "text-secondary",
             salesBtn: "btn-secondary",
             borderStyle: {
                 borderRadius: "50%",
@@ -45,6 +48,12 @@ const productApp = {
             if (this.cartTotal >= 100) {
                 this.salesBtn = "btn-success";
             }
+        },
+        transitionColor(el) {
+            this.totalColor = "text-danger";
+        },
+        resetColor(el) {
+            this.totalColor = "text-secondary";
         },
     },
 };
