@@ -22,8 +22,8 @@
                 <div class="mr-auto d-flex align-items-end flex-column bd-highlight mb-3 position-absolute">
                     <div class="mb-2">
                         <span class="font-weight-bold bg-white">{{currency(cartTotal)}}</span>
-                        <button class="btn btn-success btn-sm ml-3" id="cartDropdown" aria-haspopup="true"
-                            aria-expanded="false" :style="warningObject" @click="displayCart= !displayCart">
+                        <button class="btn btn-sm ml-3" id="cartDropdown" aria-haspopup="true"
+                            aria-expanded="false" :class="cartBtn" @click="displayCart= !displayCart">
                             <i class="fas fa-shopping-cart mr-1"></i>
                             {{cart.length}}
                         </button>

@@ -1,10 +1,7 @@
 const productApp = {
     data() {
         return {
-            warningObject: {
-                backgroundColor: "auto",
-                border: "transparent",
-            },
+            salesBtn: "btn-secondary",
             borderStyle: {
                 borderRadius: "50%",
                 border: "3px solid darkgreen",
@@ -30,6 +27,13 @@ const productApp = {
         cartTotal() {
             return this.cart.reduce((inc, item) => Number(item.price) + inc, 0);
         },
+        cartBtn() {
+            return {
+                "btn-secondary": this.cartTotal <= 100,
+                "btn-success": this.cartTotal > 100,
+                "btn-danger": this.cartTotal > 200,
+            };
+        },
     },
     methods: {
         currency(value) {
@@ -39,7 +43,7 @@ const productApp = {
         addToCart(item, e) {
             this.cart.push(item);
             if (this.cartTotal >= 100) {
-                this.warningObject.backgroundColor = "red";
+                this.salesBtn = "btn-success";
             }
         },
     },
