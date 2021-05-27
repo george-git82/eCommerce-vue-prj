@@ -1,0 +1,22 @@
+{
+  "name": "ecommerce-vue-prj",
+  "version": "1.0.0",
+  "description": "eCommerce vue project",
+  "main": "index.html",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/george-git82/eCommerce-vue-prj.git"
+  },
+  "keywords": [
+    "vue"
+  ],
+  "author": "Abhishek Ghosh",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/george-git82/eCommerce-vue-prj/issues"
+  },
+  "homepage": "https://github.com/george-git82/eCommerce-vue-prj#readme"
+}
