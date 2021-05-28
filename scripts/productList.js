@@ -52,6 +52,21 @@ const productApp = {
 
 const App = Vue.createApp(productApp);
 
+App.component("custom-alert", {
+    props: ["type", "close"],
+    methods: {
+        closeButton() {
+            event.target.parentNode.remove();
+        },
+    },
+    template: `
+        <div :class="[(type ? 'alert-' + type : 'alert-secondary'), (close ? 'alert-dismissible' : '')]" class="alert" role="alert">
+            <slot>Congrats on getting some items to your cart !! </slot>
+            <button v-if="close" @click="closeButton" type="button" class="btn-close" aria-label="Close"></button>
+        </div>
+    `,
+});
+
 App.component("product", {
     data() {
         return {

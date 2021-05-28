@@ -55,6 +55,8 @@
             <input type="range" class="form-range" name="max-price-range" id="max-price-range" v-model.number="max"
                 min="0" max="130">
 
+            <custom-alert type="success" close="true" v-if="cartTotal >= 1"></custom-alert>
+
             <div class="form-check">
                 <input type="checkbox" class="form-check-input" name="showLabels" id="showLabels"
                     v-model="displayLabels">
