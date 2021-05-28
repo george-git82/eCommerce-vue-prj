@@ -64,29 +64,7 @@
             </div>
 
             <div v-for="(el, k, i) in filteredProducts" :key="el.id">
-                <hr v-if="k!=0">
-                <h3 class="text-info">{{k + 1}}.</h3>
-                <div id="display-list" class="row d-flex mb-3 align-items-center">
-                    <div class="col-1 m-auto">
-                        <button class="btn btn-success" :style="borderStyle" @click="addToCart(el, $event)">
-                            +
-                        </button>
-                    </div>
-                    <div class="col-sm-4">
-                        <img class="img-fluid d-block" :src="el.image" :alt="el.image_title">
-                    </div>
-                    <div class="col">
-                        <h3 class="text-info">{{el.id}} | {{el.name}}</h3>
-                        <p class="mb-0">{{el.description}}</p>
-                        <div class="h5 float-right">
-                            <span class="badge bg-success" v-if="el.price>=90 && displayLabels">premier</span>
-                            <span class="badge bg-primary"
-                                v-else-if="el.price<90 && el.price>10 && displayLabels">value</span>
-                            <span class="badge bg-danger" v-else-if="el.price<=10 && displayLabels">sale</span>
-                            <curr :amt="el.price"></curr>
-                        </div>
-                    </div>
-                </div>
+                <product :item="el" :k="k" :i="i" :display-labels="displayLabels" @add-to-cart="addToCart"></product>
             </div>
         </section>
     </div>
