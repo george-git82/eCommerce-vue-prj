@@ -52,7 +52,6 @@
         <section class="container">
             <label for="max-price" class="form-label h4">Max Price (${{max}})</label>
             <div class="badge bg-success ml-3">{{filteredProducts.length}} results found</div>
-            <!-- <input type="text" class="form-control" id="max-price" v-model.number="max"> -->
             <input type="range" class="form-range" name="max-price-range" id="max-price-range" v-model.number="max"
                 min="0" max="130">
 
@@ -74,7 +73,7 @@
                         </button>
                     </div>
                     <div class="col-sm-4">
-                        <img class="img-fluid d-block" v-bind:src="el.image" :alt="el.image_title">
+                        <img class="img-fluid d-block" :src="el.image" :alt="el.image_title">
                     </div>
                     <div class="col">
                         <h3 class="text-info">{{el.id}} | {{el.name}}</h3>
