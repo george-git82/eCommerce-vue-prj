@@ -23,7 +23,9 @@
             <div class=" w-100 navbar-text ml-auto d-flex justify-content-end position-relative">
                 <div class="mr-auto d-flex align-items-end flex-column bd-highlight mb-3 position-absolute">
                     <div class="mb-2">
-                        <span class="font-weight-bold bg-white" :class="totalColor">{{currency(cartTotal)}}</span>
+                        <span class="font-weight-bold bg-white" :class="totalColor">
+                            <curr :amt="cartTotal"></curr>
+                        </span>
                         <button class="btn btn-sm ml-3" id="cartDropdown" aria-haspopup="true" aria-expanded="false"
                             :class="cartBtn" @click="displayCart= !displayCart">
                             <i class="fas fa-shopping-cart mr-1"></i>
@@ -36,7 +38,9 @@
                                 <div v-for="(item, index) in cart" :key="index"
                                     class="list-group-item d-flex justify-content-between">
                                     <div>{{item.name}}</div>
-                                    <div class="ml-3 font-weight-bold">{{currency(item.price)}}</div>
+                                    <div class="ml-3 font-weight-bold">
+                                        <curr :amt="item.price"></curr>
+                                    </div>
                                 </div>
                             </div>
                         </transition>
@@ -80,7 +84,7 @@
                             <span class="badge bg-primary"
                                 v-else-if="el.price<90 && el.price>10 && displayLabels">value</span>
                             <span class="badge bg-danger" v-else-if="el.price<=10 && displayLabels">sale</span>
-                            {{currency(el.price)}}
+                            <curr :amt="el.price"></curr>
                         </div>
                     </div>
                 </div>

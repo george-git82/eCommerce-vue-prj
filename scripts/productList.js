@@ -39,10 +39,10 @@ const productApp = {
         },
     },
     methods: {
-        currency(value) {
-            let fpnNum = Number.parseFloat(value).toFixed(2);
-            return `$${fpnNum}`;
-        },
+        // currency(value) {
+        //     let fpnNum = Number.parseFloat(value).toFixed(2);
+        //     return `$${fpnNum}`;
+        // },
         addToCart(item, e) {
             this.cart.push(item);
             if (this.cartTotal >= 100) {
@@ -57,4 +57,18 @@ const productApp = {
         },
     },
 };
-Vue.createApp(productApp).mount("#products");
+
+const App = Vue.createApp(productApp);
+
+App.component("curr", {
+    props: ["amt"],
+    template: `{{dollar(amt)}}`,
+    methods: {
+        dollar(value) {
+            let fpnNum = Number.parseFloat(value).toFixed(2);
+            return `$${fpnNum}`;
+        },
+    },
+});
+
+App.mount("#products");
