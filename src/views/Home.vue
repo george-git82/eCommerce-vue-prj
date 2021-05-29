@@ -1,7 +1,13 @@
 <template>
-  <div><h1>HI..</h1></div>
+  <div class="home">
+    <h1 class="text-primary"><fa icon="shopping-cart" />Shopping cart</h1>
+  </div>
 </template>
 
-<script></script>
+<script>
+export default {
+  name: 'Home'
+}
+</script>
 
 <style></style>

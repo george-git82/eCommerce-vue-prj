@@ -1,7 +1,30 @@
 <template>
-  <div><h1>HI..</h1></div>
+  <div id="nav">
+    <router-link to="/">Home</router-link> |
+    <router-link to="/about">About</router-link>
+  </div>
+  <div class="container"><router-view /></div>
 </template>
 
 <script></script>
 
-<style></style>
+<style lang="scss">
+$primary: #6f42c1;
+@import 'node_modules/bootstrap/scss/bootstrap';
+
+.dropdown-clip {
+  overflow: hidden;
+}
+
+.dropdown-enter-active,
+.dropdown-leave-active {
+  transition: all 0.5s ease-in-out;
+  transform: auto;
+}
+
+.dropdown-enter-from,
+.dropdown-leave-to {
+  opacity: 0;
+  transform: translateY(-300px);
+}
+</style>
