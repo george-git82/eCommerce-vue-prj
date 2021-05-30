@@ -4,9 +4,16 @@
     <router-link to="/about">About</router-link>
   </div>
   <div class="container"><router-view /></div>
+  <hr />
+  <Footer />
 </template>
 
-<script></script>
+<script>
+import Footer from '@/components/Footer'
+export default {
+  components: { Footer }
+}
+</script>
 
 <style lang="scss">
 $primary: #6f42c1;
