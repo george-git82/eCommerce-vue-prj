@@ -34,18 +34,11 @@ export default {
   data: function () {
     return {
       max: 50,
-      displayLabels: true,
-      productsList: []
+      displayLabels: true
     }
   },
+  props: ['productsList'],
   components: { Product, RangeSelector },
-  created() {
-    fetch('https://hplussport.com/api/products/order/price')
-      .then(resp => resp.json())
-      .then(data => {
-        this.productsList = data
-      })
-  },
   computed: {
     filteredProducts() {
       return this.productsList.filter(item => item.price <= Number(this.max))

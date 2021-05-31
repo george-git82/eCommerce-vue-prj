@@ -1,7 +1,11 @@
 <template>
   <Navbar :cart="cart" />
   <div class="container">
-    <router-view :cart="cart" @add-to-cart="addToCart" />
+    <router-view
+      :cart="cart"
+      @add-to-cart="addToCart"
+      :productsList="productsList"
+    />
   </div>
   <hr />
   <Footer />
@@ -16,10 +20,18 @@ export default {
   data: function () {
     return {
       cart: [],
-      displayCart: false
+      displayCart: false,
+      productsList: []
     }
   },
   components: { Footer, Navbar },
+  created() {
+    fetch('https://hplussport.com/api/products/order/price')
+      .then(resp => resp.json())
+      .then(data => {
+        this.productsList = data
+      })
+  },
   methods: {
     addToCart(item, e) {
       this.cart.push(item)
