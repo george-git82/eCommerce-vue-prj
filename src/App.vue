@@ -1,7 +1,9 @@
 <template>
   <div id="nav" class="navbar navbar-light" style="background-color: #e3f2fd">
     <router-link to="/"><fa icon="home" /> Home</router-link> |
-    <router-link to="/about"><fa icon="address-card" /> About</router-link>
+    <router-link to="/checkout"
+      ><fa icon="address-card" /> Checkout</router-link
+    >
   </div>
   <div class="container"><router-view /></div>
   <hr />
