@@ -44,7 +44,8 @@
 <script>
 import Curr from '@/components/Curr'
 export default {
-  data() {
+  name: 'Product',
+  data: function () {
     return {
       borderStyle: {
         borderRadius: '20%',

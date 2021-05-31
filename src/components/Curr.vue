@@ -4,6 +4,7 @@
 
 <script>
 export default {
+  name: 'Curr',
   props: ['amt'],
   methods: {
     dollar(value) {

@@ -20,6 +20,7 @@
 
 <script>
 export default {
+  name: 'CustomAlert',
   props: ['type', 'close'],
   methods: {
     closeButton() {

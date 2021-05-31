@@ -21,7 +21,7 @@
                 :class="cartBtn"
                 @click="displayCart = !displayCart"
               >
-                <i class="fas fa-shopping-cart mr-1"></i>
+                <fa icon="shopping-cart" />
                 {{ cart.length }}
               </button>
             </div>
@@ -103,10 +103,10 @@
 import Product from '@/components/Product'
 import Curr from '@/components/Curr'
 import CustomAlert from '@/components/CustomAlert'
+
 export default {
   name: 'Home',
-  components: { Product, Curr, CustomAlert },
-  data() {
+  data: function () {
     return {
       show: true,
       btnColor: 'btn-success',
@@ -119,6 +119,7 @@ export default {
       displayCart: false
     }
   },
+  components: { Product, Curr, CustomAlert },
   created() {
     fetch('https://hplussport.com/api/products/order/price')
       .then(resp => resp.json())

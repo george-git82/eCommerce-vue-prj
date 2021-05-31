@@ -13,7 +13,8 @@
 
 <script>
 export default {
-  data() {
+  name: 'Footer',
+  data: function () {
     return {
       creator: {
         name: 'Abhishek Ghosh',
