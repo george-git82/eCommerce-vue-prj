@@ -6,7 +6,7 @@
       <button
         class="btn btn-success"
         :style="borderStyle"
-        @click="$emit('addToCart', item, $event)"
+        @click="this.$parent.$parent.$emit('addToCart', item, $event)"
       >
         +
       </button>
