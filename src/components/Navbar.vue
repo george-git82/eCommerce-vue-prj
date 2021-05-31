@@ -16,7 +16,7 @@
             aria-haspopup="true"
             aria-expanded="false"
             :class="cartBtn"
-            @click="displayCart = !displayCart"
+            @click="toggleDisplayCart"
           >
             <fa icon="shopping-cart" />
             {{ cart.length }}
@@ -55,6 +55,11 @@ export default {
         'btn-success': this.cartTotal > 100,
         'btn-danger': this.cartTotal > 200
       }
+    }
+  },
+  methods: {
+    toggleDisplayCart(el) {
+      this.displayCart = !this.displayCart
     }
   }
 }
