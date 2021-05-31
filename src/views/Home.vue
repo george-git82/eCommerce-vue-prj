@@ -2,21 +2,7 @@
   <div class="home">
     <div id="products">
       <section class="container">
-        <label for="max-price" class="form-label h4"
-          >Max Price (${{ max }})</label
-        >
-        <div class="badge bg-success ml-3">
-          {{ filteredProducts.length }} results found
-        </div>
-        <input
-          type="range"
-          class="form-range"
-          name="max-price-range"
-          id="max-price-range"
-          v-model.number="max"
-          min="0"
-          max="130"
-        />
+        <RangeSelector :products="filteredProducts" v-model.number="max" />
 
         <div class="form-check">
           <input
@@ -41,6 +27,7 @@
 
 <script>
 import Product from '@/components/Product'
+import RangeSelector from '@/components/RangeSelector'
 
 export default {
   name: 'Home',
@@ -51,7 +38,7 @@ export default {
       productsList: []
     }
   },
-  components: { Product },
+  components: { Product, RangeSelector },
   created() {
     fetch('https://hplussport.com/api/products/order/price')
       .then(resp => resp.json())
@@ -61,7 +48,7 @@ export default {
   },
   computed: {
     filteredProducts() {
-      return this.productsList.filter(item => item.price <= this.max)
+      return this.productsList.filter(item => item.price <= Number(this.max))
     }
   }
 }
