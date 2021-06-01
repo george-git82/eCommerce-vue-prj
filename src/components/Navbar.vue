@@ -19,7 +19,7 @@
             @click="toggleDisplayCart"
           >
             <fa icon="shopping-cart" />
-            {{ cart.length }}
+            {{ cartQty }}
           </button>
         </div>
         <CartDropdown :displayCart="displayCart" :cart="cart" />
@@ -43,12 +43,9 @@ export default {
       displayCart: false
     }
   },
-  props: ['cart'],
+  props: ['cart', 'cartTotal', 'cartQty'],
   components: { Curr, CustomAlert, CartDropdown },
   computed: {
-    cartTotal() {
-      return this.cart.reduce((inc, item) => Number(item.price) + inc, 0)
-    },
     cartBtn() {
       return {
         'btn-secondary': this.cartTotal <= 100,
@@ -59,6 +56,8 @@ export default {
   },
   methods: {
     toggleDisplayCart(el) {
+      this.totalColor =
+        this.totalColor == 'text-secondary' ? 'text-danger' : 'text-secondary'
       this.displayCart = !this.displayCart
     }
   }

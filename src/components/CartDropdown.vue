@@ -5,15 +5,20 @@
       @enter="transitionColor"
       @after-leave="resetColor"
     >
-      <div class="list-group" aria-labelledby="cartDropdown" v-if="displayCart">
-        <div
-          v-for="(item, index) in cart"
-          :key="index"
-          class="list-group-item d-flex justify-content-between"
-        >
-          <div>{{ item.name }}</div>
-          <div class="ml-3 font-weight-bold">
-            <Curr :amt="item.price" />
+      <div
+        class="list-group bg-warning"
+        aria-labelledby="cartDropdown"
+        v-if="displayCart"
+      >
+        <div v-for="(item, index) in cart" :key="index">
+          <div class="dropdown-item-text text-nowrap text-right align-middle">
+            <span class="badge bg-success align-text-top mr-1">
+              {{ item.qty }}</span
+            >
+            {{ item.product.name }}
+            <b>
+              <Curr :amt="item.qty * Number(item.product.price)" />
+            </b>
           </div>
         </div>
       </div>
