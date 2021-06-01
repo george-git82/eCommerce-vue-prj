@@ -6,7 +6,7 @@
       @after-leave="resetColor"
     >
       <div
-        class="list-group bg-warning"
+        class="list-group bg-light"
         aria-labelledby="cartDropdown"
         v-if="displayCart"
       >
@@ -19,8 +19,19 @@
             <b>
               <Curr :amt="item.qty * Number(item.product.price)" />
             </b>
+            <button
+              @click.stop="this.$parent.$emit('deleteItem', index)"
+              class="btn btn-sm btn-danger ml-2"
+            >
+              -
+            </button>
           </div>
         </div>
+        <router-link
+          to="/checkout"
+          class="btn btn-sm btn-success text-white float-right ml-2 mr-2 mt-2 mb-2"
+          >Checkout</router-link
+        >
       </div>
     </transition>
   </div>
@@ -33,6 +44,7 @@ export default {
   name: 'CartDropdown',
   components: { Curr },
   props: ['displayCart', 'cart'],
+  emits: ['deleteItem'],
   methods: {
     transitionColor(el) {
       this.totalColor = 'text-danger'
