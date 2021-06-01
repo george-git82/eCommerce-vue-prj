@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>eCommerce | single file | vue project</title>
+
+    <link rel='stylesheet' href='https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha2/css/bootstrap.min.css'>
+    <link rel='stylesheet' href='https://use.fontawesome.com/releases/v5.7.0/css/all.css'>
+    <script src="https://unpkg.com/vue@next"></script>
+
+    <link rel="stylesheet" href="./styles/style.css">
+</head>
+
+<body class="container mt-5">
+    <nav class="navbar navbar-light" style="background-color: #e3f2fd;">
+        <i class="fas fa-shopping-bag fa-lg"></i> Enjoy Shopping !!!
+    </nav>
+    <div id="products">
+        <nav class="navbar navbar-light sticky-top mr-3">
+            <div class=" w-100 navbar-text ml-auto d-flex justify-content-end position-relative">
+                <div class="mr-auto d-flex align-items-end flex-column bd-highlight mb-3 position-absolute">
+                    <div class="mb-2">
+                        <span class="font-weight-bold bg-white" :class="totalColor">
+                            <curr :amt="cartTotal"></curr>
+                        </span>
+                        <button class="btn btn-sm ml-3" id="cartDropdown" aria-haspopup="true" aria-expanded="false"
+                            :class="cartBtn" @click="displayCart= !displayCart">
+                            <i class="fas fa-shopping-cart mr-1"></i>
+                            {{cart.length}}
+                        </button>
+                    </div>
+                    <div class="dropdown-clip">
+                        <transition name="dropdown" @enter="transitionColor" @after-leave="resetColor">
+                            <div class="list-group" aria-labelledby="cartDropdown" v-if="displayCart">
+                                <div v-for="(item, index) in cart" :key="index"
+                                    class="list-group-item d-flex justify-content-between">
+                                    <div>{{item.name}}</div>
+                                    <div class="ml-3 font-weight-bold">
+                                        <curr :amt="item.price"></curr>
+                                    </div>
+                                </div>
+                            </div>
+                        </transition>
+                    </div>
+                </div>
+            </div>
+        </nav>
+
+        <section class="container">
+            <label for="max-price" class="form-label h4">Max Price (${{max}})</label>
+            <div class="badge bg-success ml-3">{{filteredProducts.length}} results found</div>
+            <input type="range" class="form-range" name="max-price-range" id="max-price-range" v-model.number="max"
+                min="0" max="130">
+
+            <custom-alert type="success" close="true" v-if="cartTotal >= 1"></custom-alert>
+
+            <div class="form-check">
+                <input type="checkbox" class="form-check-input" name="showLabels" id="showLabels"
+                    v-model="displayLabels">
+                <label for="showLabels" class="form-check-label">
+                    <span class="badge bg-dark">Show labels</span>
+                </label>
+            </div>
+
+            <div v-for="(el, k, i) in filteredProducts" :key="el.id">
+                <product :item="el" :k="k" :i="i" :display-labels="displayLabels" @add-to-cart="addToCart"></product>
+            </div>
+        </section>
+    </div>
+
+    <hr>
+    <div id="footerSection">
+        <footer class="page-footer font-small blue pt-4">
+            <div class="footer-copyright text-center py-3">
+                © 2021 : {{creator.name}} |
+                <a :href="creator.link" :alt="creator.linkAlt"> <i class="fab fa-github"></i></a>
+            </div>
+        </footer>
+    </div>
+    <script src="./scripts/footer.js"></script>
+    <script src="./scripts/productList.js"></script>
+</body>
+
+</html>
