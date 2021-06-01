@@ -26,4 +26,4 @@ npm run build
 npm run lint
 ```
 
-Visit website [here](https://george-git82.github.io/eCommerce-vue-prj/index.html)
+Visit website [here](https://george-git82.github.io/eCommerce-vue-prj/#/)
